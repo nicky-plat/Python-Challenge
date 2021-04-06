@@ -31,15 +31,20 @@ with open(csv_file_path, newline='') as csv_file:
     # # Read through each row in the csv file from row 2 to end
     previous_row_total = 0
     counter = 0
+    list_difference = []
 
     for row in csv_reader:
-        previous_row_total = row[1]
-        counter = counter + 1
-        if counter > 2:
-            if row[1] > previous_row_total:
-                print(previous_row_total)
-                print(counter)
-            else 
+        print(row[1], previous_row_total, counter, list_difference)
+        if counter >= 1:
+            list_difference.append(int(previous_row_total) - int(row[1])) 
+            counter = counter + 1
+            previous_row_total = row[1]
+        else:
+            counter = counter + 1
+            previous_row_total = row[1]
+        print(row[1], previous_row_total, counter, list_difference)
+        
+    print(sum(list_difference))
 
 
 
