@@ -24,7 +24,7 @@ with open(csv_file_path, newline='') as csv_file:
     
     # # Read the Header
     csv_header = next(csv_file)
-    print(f"Header: {csv_header}")
+    # print(f"Header: {csv_header}")
 
     # # Read through each row in the csv file from row 2 to end
     previous_row_total = 0
@@ -91,7 +91,7 @@ with open(csv_file_path, newline='') as csv_file:
 
 # # average_change = total_change / (total months - 1)
 # # print()
-# # -------------------------------------------------------
+# -------------------------------------------------------
 
 
 # #Create summary table
@@ -101,13 +101,8 @@ output = (
     f"Total Months: {total_months}\n"
     f"Total: ${total}\n"
     f"Average Change: ${average_change}\n"
-    f"Greatest Increase in Profits: {greatest_increase}\n"
-    f"Greatest Decrease in Profits: {greatest_decrease}\n"
+    f"Greatest Increase in Profits: {increase_date} (${increase_amt})\n"
+    f"Greatest Decrease in Profits: {decrease_date} (${decrease_amt})\n"
 )
 
 print(output)
-
-print(increase_amt)
-print(decrease_amt)
-print(increase_date)
-print(decrease_date)
