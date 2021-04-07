@@ -11,6 +11,9 @@ total_months = 0
 total = 0 
 total_change = 0
 average_change = 0
+amount_diff = 0
+increase_amt = 0
+decrease_amt = 0
 greatest_increase = ["", 0] # positive change
 greatest_decrease = ["", 999999999] # negative change
 
@@ -34,9 +37,21 @@ with open(csv_file_path, newline='') as csv_file:
         # print(row[0], row[1])
         # print(row[1], previous_row_total, counter, list_difference)
         if counter >= 1:
-            list_difference.append(int(row[1]) - int(previous_row_total)) 
+            list_difference.append(int(row[1]) - int(previous_row_total))
+            # taking m-t-m diff and storing in variable
+            amount_diff =  (int(row[1]) - int(previous_row_total))
             counter = counter + 1
             previous_row_total = row[1]
+                # take stored m-t-m data and compare to previous amt
+            if amount_diff > increase_amt:
+                # update to new amt
+                increase_amt = amount_diff
+                increase_date = row[0]
+            elif amount_diff < decrease_amt:
+                # update to new amt
+                decrease_amt = amount_diff
+                decrease_date = row[0]
+
         else:
             counter = counter + 1
             previous_row_total = row[1]
@@ -47,21 +62,21 @@ with open(csv_file_path, newline='') as csv_file:
         # print(max(list_difference))
         # calculate total months
         total_months = total_months + 1        
-        print(total_months)
+        # print(total_months)
         # calculate total profit/loss
         total = total + int(row[1])
-        print(total)  
+        # print(total)  
         
     # print(row[1], previous_row_total, counter, list_difference)
 
     # calculate month-to-month change
-    print(sum(list_difference))
+    # print(sum(list_difference))
     # calculate average change
     average_change = sum(list_difference) / (total_months -1)
-    print(average_change)
+    # print(average_change)
     # print(row[0], row[1])
 
-print(total_change)
+# print(total_change)
 
     
 #         # use conditional to see if current change greater than greatest_increase
@@ -91,3 +106,8 @@ output = (
 )
 
 print(output)
+
+print(increase_amt)
+print(decrease_amt)
+print(increase_date)
+print(decrease_date)
