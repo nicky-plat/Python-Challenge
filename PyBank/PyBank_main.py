@@ -8,7 +8,7 @@ csv_file_path = os.path.join(".", "Resources", "budget_data.csv")
 
 # Initialize variables
 total_months = 0
-total = 0
+total = 0 
 total_change = 0
 average_change = 0
 greatest_increase = ["", 0] # positive change
@@ -28,6 +28,7 @@ with open(csv_file_path, newline='') as csv_file:
     counter = 0
     list_difference = []
     total_change = []
+    total = 0
 
     for row in csv_reader:
         # print(row[0], row[1])
@@ -39,45 +40,35 @@ with open(csv_file_path, newline='') as csv_file:
         else:
             counter = counter + 1
             previous_row_total = row[1]
-    
+
+        # sort list_difference values to identify greatest increase/decrease
+        list_difference.sort()
+        # print to test output
+        # print(max(list_difference))
+        # calculate total months
         total_months = total_months + 1        
         print(total_months)
+        # calculate total profit/loss
+        total = total + int(row[1])
+        print(total)  
         
     # print(row[1], previous_row_total, counter, list_difference)
 
-    total = sum(int(row[1]))
-    print(total)  
-
+    # calculate month-to-month change
     print(sum(list_difference))
-
+    # calculate average change
     average_change = sum(list_difference) / (total_months -1)
     print(average_change)
     # print(row[0], row[1])
 
 print(total_change)
 
-    # if total_months + 1 > total_months:
-    #     # go to next row
-    #     print("what now")
-
-    # else:
-    #     print("what")
-
-#         # calculate the month to month change
-#          # sum total Profit/Losses (second column of csv file)
-#         # total_change
-        
-#         # Need to start on second month 
     
 #         # use conditional to see if current change greater than greatest_increase
 #             #if greater than replace current values in greatest_increase
 
 #         # USE CONDITIONAL TO SEE IF CURRENT CHANGE BIGGER THAN greatest_decrease
 #             # if bigger negative number then replsce values in greatest_decrease
-            
-#         #----------------------------------------------
-#         # setup variables for next iteration (next row)
-#         # set prior_value = current_row
 
 # # calculate total
 
@@ -93,8 +84,8 @@ output = (
     f"Financial Analysis\n"
     f"-----------------------------------\n"
     f"Total Months: {total_months}\n"
-    f"Total: {total}\n"
-    f"Average Change: {average_change}\n"
+    f"Total: ${total}\n"
+    f"Average Change: ${average_change}\n"
     f"Greatest Increase in Profits: {greatest_increase}\n"
     f"Greatest Decrease in Profits: {greatest_decrease}\n"
 )
