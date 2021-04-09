@@ -24,7 +24,6 @@ with open(csv_file_path, newline='') as csv_file:
     
     # # Read the Header
     csv_header = next(csv_file)
-    # print(f"Header: {csv_header}")
 
     # # Read through each row in the csv file from row 2 to end
     previous_row_total = 0
@@ -34,8 +33,6 @@ with open(csv_file_path, newline='') as csv_file:
     total = 0
 
     for row in csv_reader:
-        # print(row[0], row[1])
-        # print(row[1], previous_row_total, counter, list_difference)
         if counter >= 1:
             list_difference.append(int(row[1]) - int(previous_row_total))
             # taking m-t-m diff and storing in variable
@@ -58,8 +55,7 @@ with open(csv_file_path, newline='') as csv_file:
 
         # sort list_difference values to identify greatest increase/decrease
         list_difference.sort()
-        # print to test output
-        # print(max(list_difference))
+    
         # calculate total months
         total_months = total_months + 1        
         # print(total_months)
@@ -67,31 +63,11 @@ with open(csv_file_path, newline='') as csv_file:
         total = total + int(row[1])
         # print(total)  
         
-    # print(row[1], previous_row_total, counter, list_difference)
 
-    # calculate month-to-month change
-    # print(sum(list_difference))
     # calculate average change
     average_change = sum(list_difference) / (total_months -1)
     # print(average_change)
     # print(row[0], row[1])
-
-# print(total_change)
-
-    
-#         # use conditional to see if current change greater than greatest_increase
-#             #if greater than replace current values in greatest_increase
-
-#         # USE CONDITIONAL TO SEE IF CURRENT CHANGE BIGGER THAN greatest_decrease
-#             # if bigger negative number then replsce values in greatest_decrease
-
-# # calculate total
-
-# # calculate total change
-
-# # average_change = total_change / (total months - 1)
-# # print()
-# -------------------------------------------------------
 
 
 # #Create summary table
