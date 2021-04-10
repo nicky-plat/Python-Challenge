@@ -6,15 +6,7 @@ import csv
 csv_file_path = os.path.join(".", "Resources", "election_data.csv")
 # print(csv_file_path)
 # Initialize variables
-total_votes = 0
-total_khan = 0
-total_correy = 0
-total_li = 0
-total_otooley = 0
-name_khan = 0
-name_correy = 0
-name_li = 0
-name_otooley = 0
+
 pct_khan = 0
 pct_correy = 0
 pct_li = 0
@@ -23,17 +15,22 @@ winner = 0
 
 with open(csv_file_path) as csv_file:
     csv_reader = csv.reader(csv_file)
-
+   
+    # Declare variable
+    pct_khan = 0
+    pct_correy = 0
+    pct_li = 0
+    pct_otooley = 0
+    winner = 0
     total_votes = 0
     total_khan = 0
     total_correy = 0
     total_li = 0
     total_otooley = 0
-    winner = 0
     counts = {}
+    
     # Read the Header
     csv_header = next(csv_file)
-    # print(f"Header: {csv_header}")
 
     for row in csv_reader:
         # Find vote totals
@@ -57,6 +54,12 @@ with open(csv_file_path) as csv_file:
     pct_correy = round((total_correy/total_votes)*100,3)
     pct_li = round((total_li/total_votes)*100,3)
     pct_otooley = round((total_otooley/total_votes)*100,3)
+
+    # Calculate winner by creating dictionary
+    counts = {"Khan": [pct_khan], "Correy": [pct_correy], "Li": [pct_li], "OTooley": [pct_otooley]}
+    
+    winner = max(counts, key=counts.get)
+    print(winner)
 
 
 # print(total_votes)
