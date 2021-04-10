@@ -3,21 +3,15 @@ import os                        # os to join elements of the file path
 import csv                       # read csv file using .reader method
 
 csv_file_path = os.path.join(".", "Resources", "budget_data.csv")
-# print(csv_file_path)
-
 
 # Initialize variables
 total_months = 0
-total = 0 
 total_change = 0
 average_change = 0
 amount_diff = 0
 increase_amt = 0
 decrease_amt = 0
-greatest_increase = ["", 0] # positive change
-greatest_decrease = ["", 999999999] # negative change
 
-#-------------------------------------------------------------------
 # Open and read the csv_file called budget_data.csv
 with open(csv_file_path, newline='') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter= ",")
