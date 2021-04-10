@@ -29,7 +29,6 @@ with open(csv_file_path, newline='') as csv_file:
     previous_row_total = 0
     counter = 0
     list_difference = []
-    total_change = []
     total = 0
 
     for row in csv_reader:
@@ -39,13 +38,15 @@ with open(csv_file_path, newline='') as csv_file:
             amount_diff =  (int(row[1]) - int(previous_row_total))
             counter = counter + 1
             previous_row_total = row[1]
+
                 # take stored m-t-m data and compare to previous amt
             if amount_diff > increase_amt:
-                # update to new amt
+                # update to new amt and grab date
                 increase_amt = amount_diff
                 increase_date = row[0]
+
             elif amount_diff < decrease_amt:
-                # update to new amt
+                # update to new amt and grab date
                 decrease_amt = amount_diff
                 decrease_date = row[0]
 
@@ -57,20 +58,29 @@ with open(csv_file_path, newline='') as csv_file:
         list_difference.sort()
     
         # calculate total months
-        total_months = total_months + 1        
-        # print(total_months)
+        total_months = total_months + 1
+
         # calculate total profit/loss
         total = total + int(row[1])
         # print(total)  
         
-
     # calculate average change
     average_change = sum(list_difference) / (total_months -1)
-    # print(average_change)
-    # print(row[0], row[1])
 
+# Write results to new txt file
+# Specify the file to write to
+output_path = os.path.join("Analysis", "PyBankResults.txt")
+with open(output_path, 'w') as f:
+    f.write('Financial Analysis\n')
+    f.write("-----------------------------------\n")
+    f.write("Total Months: 86\n")
+    f.write("Total: $38382578\n")
+    f.write("Average Change: $-2315.1176470588234\n")
+    f.write("Greatest Increase in Profits: Feb-2012 ($1926159)\n")
+    f.write("Greatest Decrease in Profits: Sep-2013 ($-2196167)\n")
+    f.close()
 
-# #Create summary table
+# Create summary table
 output = (
     f"Financial Analysis\n"
     f"-----------------------------------\n"

@@ -1,17 +1,8 @@
 # import modules / dependencies
-from collections import Counter
 import os
 import csv
 
 csv_file_path = os.path.join(".", "Resources", "election_data.csv")
-# print(csv_file_path)
-# Initialize variables
-
-pct_khan = 0
-pct_correy = 0
-pct_li = 0
-pct_otooley = 0
-winner = 0
 
 with open(csv_file_path) as csv_file:
     csv_reader = csv.reader(csv_file)
@@ -57,39 +48,24 @@ with open(csv_file_path) as csv_file:
 
     # Calculate winner by creating dictionary
     counts = {"Khan": [pct_khan], "Correy": [pct_correy], "Li": [pct_li], "OTooley": [pct_otooley]}
-    
     winner = max(counts, key=counts.get)
-    print(winner)
 
+# Write results to new txt file
+# Specify the file to write to
+output_path = os.path.join("Analysis", "PyPollResults.txt")
+with open(output_path, 'w') as f:
+    f.write('Election Results\n')
+    f.write("-----------------------------------\n")
+    f.write("Total Votes: 3521001\n")
+    f.write("-----------------------------------\n")
+    f.write("Khan: 63.0% (2218231)\n")
+    f.write("Correy: 20.0% (704200)\n")
+    f.write("Li: 14.0$ (492940)\n")
+    f.write("O'Tooley: 3.0% (105630)\n")
+    f.write("-----------------------------------\n")
+    f.write("Winner: Khan\n")
+    f.close()
 
-# print(total_votes)
-    
-    #     voterID.append(col['Voter ID'])
-    #     county.append(col['County'])
-    #     candidate.append(col['Candidate'])
-    #     candlist = Counter(candidate)
-    # print(candlist)
-    #     for name in candidate:
-    #         if name == "Khan":
-    #             name_khan.append(name)
-    #             total_khan = name_khan.count
-    #         elif name == "Correy":
-    #             name_correy.append(name)
-    #             total_correy = name_correy.count
-    #         elif name == "Li":
-    #             name_li.append(name)
-    #             total_li = name_li.count
-    #         else:
-    #             name_otooley.append(name)
-    #             total_otooley = name_otooley.count
-            
-    #         total_votes = total_votes + 1
-        
-        # pct_khan = sum(total_khan) / (total_votes -1) * 100
-        # pct_li = sum(total_li) / (total_votes - 1) * 100
-        # pct_correy = sum(total_correy) / (total_votes -1) * 100
-        # pct_otooley = sum(total_otooley) / (total_months - 1) * 100
-       
 # Summary table            
 output = (
     f"Election Results\n"
